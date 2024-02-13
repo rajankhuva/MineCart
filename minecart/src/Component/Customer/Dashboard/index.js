@@ -90,7 +90,6 @@ const Dashboard = () => {
     }
   }, [products]);
 
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -177,7 +176,7 @@ const Dashboard = () => {
       }
     });
     return (
-      <div>
+      <div style={{ fontSize: "16px", backgroundColor: "black", color:"white" }}>
         <span>Total</span>
         <span style={{ marginLeft: "50px" }}>${total}</span>
       </div>
@@ -189,7 +188,7 @@ const Dashboard = () => {
       {rows.length > 0 && (
         <TableContainer component={Paper}>
           <Table>
-            <TableBody>
+            <TableBody className="products">
               {rows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell align="left">{row.title}</TableCell>
@@ -220,10 +219,12 @@ const Dashboard = () => {
       )}
 
       <div className="footer">
-        <Typography>Cart</Typography>
+        <Typography style={{ fontSize: "16px", backgroundColor: "black", color:"white" }}>
+          Cart
+        </Typography>
         <TableContainer component={Paper}>
           <Table>
-            <TableBody>
+            <TableBody className="cart">
               {rows.map(
                 (row, index) =>
                   row.isAddedToCart && (

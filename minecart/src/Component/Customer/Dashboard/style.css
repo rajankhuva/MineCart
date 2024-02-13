@@ -37,3 +37,9 @@
     justify-content: center !important;
     gap: 20px !important;
   }
+  .products{
+    background-color: aliceblue;
+  }
+  .cart{
+    background-color: antiquewhite; 
+  }
