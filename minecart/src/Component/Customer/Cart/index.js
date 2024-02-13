@@ -14,8 +14,6 @@ const Cart = () => {
     getProducts();
   }, []);
 
-  console.log("afsfsfsdfs======", products);
-
   return (
     <div>
       <Header />

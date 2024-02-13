@@ -29,6 +29,12 @@
     cursor: pointer;
     padding: 5px;
   }
+
   .footer{
     margin-top: "25px";
+  }
+  .action{
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px !important;
   }

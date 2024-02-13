@@ -7,7 +7,6 @@ export const isLoggedIn = () => {
 
 export const getAccessToken = () => {
     const data = localStorage.getItem("accessToken");
-    console.log("data", data);
     return data
   };
 
@@ -16,7 +15,7 @@ export const getAccessToken = () => {
   };
 
 export const LoginedIn = ({ children }) => {
-    return !isLoggedIn() ? children : <Navigate to="/login" replace />;
+    return !isLoggedIn() ? children : <Navigate to="/" replace />;
   };
 
 

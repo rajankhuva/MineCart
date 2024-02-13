@@ -90,7 +90,6 @@ const Dashboard = () => {
     }
   }, [products]);
 
-  console.log("products", products);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -129,8 +128,6 @@ const Dashboard = () => {
       ? (a, b) => descendingComparator(a, b, orderBy)
       : (a, b) => -descendingComparator(a, b, orderBy);
   };
-
-  console.log("rowsss", rows);
 
   const openDetailsPopUp = (row) => {
     setOpen(true);
@@ -234,7 +231,7 @@ const Dashboard = () => {
                       <TableCell align="left">{row.title}</TableCell>
                       <TableCell align="left">{row.category}</TableCell>
                       <TableCell align="left">${row.price * row.qty}</TableCell>
-                      <TableCell>
+                      <TableCell className="action">
                         <RemoveIcon
                           onClick={() => {
                             handleLess(row);
