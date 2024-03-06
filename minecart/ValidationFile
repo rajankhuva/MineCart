@@ -1,0 +1,114 @@
+import * as React from "react";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from "@mui/material";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { useState } from "react";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+
+const AddTag = (props) => {
+  const { open, handleCloseTag, handleSaveTag } = props;
+  const [tagData, setTagData] = useState({
+    name: "",
+    description: "",
+    tagCategoryId: props.categoryId,
+  });
+
+  const handleChange = (event) => {
+    const field = event.target.name;
+    let commonData = { ...tagData };
+    commonData[field] = event.target.value;
+    return setTagData(commonData);
+  };
+
+  const handleAddTag = () => {
+    handleSaveTag(tagData);
+    handleCloseTag();
+  };
+
+  return (
+    <React.Fragment>
+      <Dialog open={open} onClose={handleCloseTag}>
+        <ValidatorForm
+          onSubmit={() => handleAddTag()}
+          autoComplete="off"
+          className="popup-layout"
+        >
+          <Box className="popup-header">
+            <DialogTitle>Add New Tag</DialogTitle>
+          </Box>
+          <DialogContent sx={{ width: "600px" }} className="popup-body">
+            <div className="popup-input-box w-100">
+              <Typography>Name</Typography>
+              <TextValidator
+                fullWidth
+                size="small"
+                margin="normal"
+                type="text"
+                name="name"
+                value={tagData.name}
+                placeholder="Enter Name"
+                sx={{ marginTop: 0 }}
+                validators={["required"]}
+                onChange={handleChange}
+                errorMessages={["Name is required"]}
+              />
+            </div>
+            <div className="popup-input-box w-100">
+               <TextValidator
+                    label="Email"
+                    type="email"
+                    name="email"
+                    size="small"
+                    fullWidth
+                    value={props.customerInfo.email}
+                    onChange={props.handleChange}
+                    validators={["required", "isEmail"]}
+                    errorMessages={["Email is required", "email is not valid"]}
+                  />
+                </div>
+
+            </div>
+
+                  <div className="">
+                    <TextValidator
+                      fullWidth
+                      size="small"
+                      sx={{ marginTop: 0 }}
+                      margin="normal"
+                      type="number"
+                      name="noOfPerson"
+                      label="No. of Guests"
+                      value={reservationData.noOfPerson}
+                      onChange={handleChangeDateAndPax}
+                      validators={["required", "minNumber:1"]}
+                      errorMessages={[
+                        "No. of Guests is required",
+                        "No. of Guests should be more than 1",
+                      ]}
+                    />
+                  </div>
+
+
+          </DialogContent>
+          <DialogActions className="primary-btn popup-btn">
+            <Button variant="outlined" onClick={handleCloseTag}>
+              <CloseOutlinedIcon /> Close
+            </Button>
+            <Button type="submit" variant="contained">
+              <AddOutlinedIcon /> Add
+            </Button>
+          </DialogActions>
+        </ValidatorForm>
+      </Dialog>
+    </React.Fragment>
+  );
+};
+export default AddTag;
